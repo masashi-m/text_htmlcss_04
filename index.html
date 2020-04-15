@@ -1,0 +1,1035 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>hc_4.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="1-grid-layout1">1. Grid Layout(1)</h1>
+<h2 id="%E2%97%86-%E3%82%B0%E3%83%AA%E3%83%83%E3%83%89%E3%83%AC%E3%82%A4%E3%82%A2%E3%82%A6%E3%83%88%E3%81%A8%E3%81%AF">◆ グリッドレイアウトとは</h2>
+<p>水平線と垂直線が交差した格子(グリッド)に対し、<br>
+アイテムの配置や結合でレイアウトを設定する CSS の機能です。</p>
+<br>
+<h3 id="%E2%97%8F-%E3%82%B0%E3%83%AA%E3%83%83%E3%83%89%E3%83%AC%E3%82%A4%E3%82%A2%E3%82%A6%E3%83%88%E3%81%AE%E6%A7%8B%E6%88%90">● グリッドレイアウトの構成</h3>
+<blockquote>
+<p>・グリッドライン：番号が振られた垂直および水平の線<br>
+・トラック：グリッドの行および列。隣接する 2 本のラインの間を示す。<br>
+・セル：グリッドラインで囲まれた、アイテムを配置できる最小の単位<br>
+・エリア：複数のセルが結合してできるセルの集まり</p>
+</blockquote>
+<img src="grid1.png">
+<br>
+<img src="grid2.png">
+<p><br><br></p>
+<h3 id="%E2%97%8F-%E3%82%B0%E3%83%AA%E3%83%83%E3%83%89%E3%82%B3%E3%83%B3%E3%83%86%E3%83%8A%E3%81%A8%E3%82%B0%E3%83%AA%E3%83%83%E3%83%89%E3%82%A2%E3%82%A4%E3%83%86%E3%83%A0">● グリッドコンテナとグリッドアイテム</h3>
+<p>グリッドレイアウトでは、コンテナを親要素、アイテムを<br>
+子要素として記述します。この親子関係を記述した後、コンテナの<br>
+CSS に<mark>display: grid;</mark>を指定すると、グリッドレイアウトを
+配置出来ます。</p>
+<br>
+<div style="height:12px;">
+<span style="margin-left:8px; padding:6px 10px; background:lightgreen; color:black; font-weight:bold;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">演習 1</span>
+</div>
+<div style="border:2px solid lightgreen; padding:25px 12px 10px; font-size:0.85em;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">
+下記のコードを記述し、結果を確認しましょう。<br>
+※ コピー&ペースト OKです<br>
+> <a href="https://codepen.io/" target="_blank">CodePen</a><br>
+</div>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"container"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"box1"</span>&gt;</span>1<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"box2"</span>&gt;</span>2<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"box3"</span>&gt;</span>3<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"box4"</span>&gt;</span>4<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"box5"</span>&gt;</span>5<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+</div></code></pre>
+<pre class="hljs"><code><div><span class="hljs-selector-class">.container</span> {
+  <span class="hljs-attribute">background-color</span>: lightgray;
+}
+<span class="hljs-selector-class">.box1</span> {
+  <span class="hljs-attribute">background-color</span>: tomato;
+}
+<span class="hljs-selector-class">.box2</span> {
+  <span class="hljs-attribute">background-color</span>: orange;
+}
+<span class="hljs-selector-class">.box3</span> {
+  <span class="hljs-attribute">background-color</span>: skyblue;
+}
+<span class="hljs-selector-class">.box4</span> {
+  <span class="hljs-attribute">background-color</span>: lime;
+}
+<span class="hljs-selector-class">.box5</span> {
+  <span class="hljs-attribute">background-color</span>: pink;
+}
+
+<span class="hljs-selector-class">.container</span> {
+  <span class="hljs-attribute">display</span>: grid;
+}
+</div></code></pre>
+<br>
+<h3 id="%E2%97%8F-%E3%82%B0%E3%83%AA%E3%83%83%E3%83%89%E3%83%88%E3%83%A9%E3%83%83%E3%82%AF">● グリッドトラック</h3>
+<p>grid-template-columns と grid-template-rows を<br>
+設定し、各アイテムの配置を調整します。</p>
+<blockquote>
+<p>grid-template-columns：横方向のアイテムサイズと個数を指定<br>
+grid-template-rows：縦方向のアイテムサイズと個数を指定<br></p>
+<p>grid-auto-columns：横方向のアイテムサイズを指定<br>
+grid-auot-rows：縦方向のアイテムサイズを指定<br></p>
+</blockquote>
+<div style="height:12px;">
+<span style="margin-left:8px; padding:6px 10px; background:lightgreen; color:black; font-weight:bold;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">演習 2</span>
+</div>
+<div style="border:2px solid lightgreen; padding:25px 12px 10px; font-size:0.85em;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">
+下記のコードを記述し、結果を確認しましょう。<br>
+それぞれを確認したら、プロパティ値を変更した際の結果を表示させましょう。<br>
+</div>
+<pre class="hljs"><code><div><span class="hljs-selector-class">.container</span> {
+  <span class="hljs-attribute">display</span>: grid;
+  <span class="hljs-comment">/* ↓ ここから下を追加で記述する */</span>
+  <span class="hljs-comment">/*100pxのトラックが 3列、50pxのトラックが 2列*/</span>
+  <span class="hljs-attribute">grid-template-columns</span>: <span class="hljs-number">100px</span> <span class="hljs-number">100px</span> <span class="hljs-number">100px</span>;
+  <span class="hljs-attribute">grid-template-rows</span>: <span class="hljs-number">50px</span> <span class="hljs-number">50px</span>;
+}
+</div></code></pre>
+<pre class="hljs"><code><div><span class="hljs-selector-class">.container</span> {
+  <span class="hljs-attribute">display</span>: grid;
+  <span class="hljs-comment">/* ↓ ここから下を編集する */</span>
+  <span class="hljs-comment">/*100pxのトラックが 2列、100pxのトラック固定*/</span>
+  <span class="hljs-attribute">grid-template-columns</span>: <span class="hljs-number">100px</span> <span class="hljs-number">100px</span>;
+  <span class="hljs-attribute">grid-auto-rows</span>: <span class="hljs-number">100px</span>;
+}
+</div></code></pre>
+<br>
+<h3 id="%E2%97%8Ffr-%E5%8D%98%E4%BD%8D">●fr 単位</h3>
+<p>上記演習では、アイテムを px で設定しました。<br>
+ここに<mark>fr(fractions)</mark>という単位を指定すると、<br>
+画面に合わせてアイテムを均等に分割できます。</p>
+<div style="height:12px;">
+<span style="margin-left:8px; padding:6px 10px; background:lightgreen; color:black; font-weight:bold;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">演習 3</span>
+</div>
+<div style="border:2px solid lightgreen; padding:25px 12px 10px; font-size:0.85em;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">
+下記のコードを記述し、結果を確認しましょう。<br>
+</div>
+<pre class="hljs"><code><div><span class="hljs-selector-class">.container</span> {
+  <span class="hljs-attribute">display</span>: grid;
+  <span class="hljs-comment">/* ↓ ここから下を編集する */</span>
+  <span class="hljs-comment">/*トラック(列)を 2:1:1に配置*/</span>
+  <span class="hljs-attribute">grid-template-columns</span>: <span class="hljs-number">2</span>fr <span class="hljs-number">1</span>fr <span class="hljs-number">1</span>fr;
+  <span class="hljs-attribute">grid-template-rows</span>: <span class="hljs-number">100px</span> <span class="hljs-number">50px</span>;
+}
+</div></code></pre>
+<p>また上記コードは、以下の記述で書き換えが可能です。<br>
+(repeat 表記は、fr 以外の単位も使用可能です)</p>
+<pre class="hljs"><code><div><span class="hljs-selector-class">.container</span> {
+  <span class="hljs-attribute">display</span>: grid;
+  <span class="hljs-comment">/* 同じ単位を repeat(数,単位) で指定 */</span>
+  <span class="hljs-attribute">grid-template-columns</span>: <span class="hljs-number">2</span>fr <span class="hljs-built_in">repeat</span>(<span class="hljs-number">2</span>, <span class="hljs-number">1</span>fr);
+}
+</div></code></pre>
+<h3 id="%E2%97%8F-%E3%82%B0%E3%83%AA%E3%83%83%E3%83%89%E3%83%A9%E3%82%A4%E3%83%B3%E3%81%A8%E3%82%A2%E3%82%A4%E3%83%86%E3%83%A0%E3%81%AE%E9%85%8D%E7%BD%AE">● グリッドラインとアイテムの配置</h3>
+<p>以下のプロパティ値に対して グリッドラインの番号を指定し、<br>
+そのセルまたはエリアの範囲にアイテムを設置できます。</p>
+<blockquote>
+<p>grid-column-start：横向きの開始ラインの指定<br>
+grid-column-end：横向きの終了ラインの指定<br></p>
+<p>grid-row-start：縦向きの開始ラインの指定<br>
+grid-row-end：縦向きの終了ラインの指定<br></p>
+<p>grid-area：各ライン位置を一括で指定<br>
+(順番は row-start, column-start, row-end, column-end)<br></p>
+</blockquote>
+<br>
+<div style="height:12px;">
+<span style="margin-left:8px; padding:6px 10px; background:lightgreen; color:black; font-weight:bold;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">演習 4</span>
+</div>
+<div style="border:2px solid lightgreen; padding:25px 12px 10px; font-size:0.85em;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">
+下記のコードを記述し、結果を確認しましょう。<br>
+※ 出来るだけコードは手打ちしましょう。また、grid layoutは Emmet無いです。
+</div>
+<pre class="hljs"><code><div><span class="hljs-selector-class">.container</span> {
+  <span class="hljs-attribute">display</span>: grid;
+  <span class="hljs-comment">/* ↓ ここから下を編集する */</span>
+  <span class="hljs-attribute">grid-template-columns</span>: <span class="hljs-built_in">repeat</span>(<span class="hljs-number">3</span>, <span class="hljs-number">1</span>fr);
+  <span class="hljs-attribute">grid-auto-rows</span>: <span class="hljs-number">100px</span>;
+}
+<span class="hljs-selector-class">.box1</span> {
+  <span class="hljs-attribute">grid-row-start</span>: <span class="hljs-number">1</span>;
+  <span class="hljs-attribute">grid-row-end</span>: <span class="hljs-number">2</span>;
+  <span class="hljs-attribute">grid-column-start</span>: <span class="hljs-number">1</span>;
+  <span class="hljs-attribute">grid-column-end</span>: <span class="hljs-number">4</span>;
+}
+<span class="hljs-selector-class">.box2</span> {
+  <span class="hljs-attribute">grid-row</span>: <span class="hljs-number">2</span> / <span class="hljs-number">4</span>;
+  <span class="hljs-attribute">grid-column</span>: <span class="hljs-number">1</span> / <span class="hljs-number">2</span>;
+}
+<span class="hljs-selector-class">.box3</span> {
+  <span class="hljs-attribute">grid-area</span>: <span class="hljs-number">2</span> / <span class="hljs-number">2</span> / <span class="hljs-number">3</span> / <span class="hljs-number">4</span>;
+}
+</div></code></pre>
+<p><br><br></p>
+<h1 id="2-grid-layout2">2. Grid Layout(2)</h1>
+<h2 id="%E2%97%86web-%E3%82%B5%E3%82%A4%E3%83%88%E3%81%AE%E3%83%AC%E3%82%A4%E3%82%A2%E3%82%A6%E3%83%88">◆Web サイトのレイアウト</h2>
+<p>この章では、Web サイトでよく見かけるレイアウトを<br>
+作成し、Grid Layout の記述方法に慣れて行きましょう。</p>
+<br>
+<h3 id="%E2%97%8F3-%E3%82%AB%E3%83%A9%E3%83%A0%E3%83%AC%E3%82%A4%E3%82%A2%E3%82%A6%E3%83%88">●3 カラムレイアウト</h3>
+<p>よく見かける Web ページに、3 カラムレイアウトがあります。<br>
+ページの両端にメニューや広告、中央にコンテンツを配置する<br>
+形となっています。今回はこのレイアウトを作成しましょう。</p>
+<img src="layout.png">
+<br>
+<h3 id="%E2%97%8Fhtml-%E3%81%A8-css-%E3%81%AE%E6%BA%96%E5%82%99">●HTML と CSS の準備</h3>
+<div style="height:12px;">
+<span style="margin-left:8px; padding:6px 10px; background:lightgreen; color:black; font-weight:bold;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">演習 1</span>
+</div>
+<div style="border:2px solid lightgreen; padding:25px 12px 10px; font-size:0.85em;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">
+以下のコードを htmlエリアと CSSエリアに記述しましょう。<br>
+※ html Emmet： .container, header.header{header} ...etc <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;css Emmet：c-white, fz30, bgc-〇〇 ...etc
+</div>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"container"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">header</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"header"</span>&gt;</span>header<span class="hljs-tag">&lt;/<span class="hljs-name">header</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">main</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"main"</span>&gt;</span>main<span class="hljs-tag">&lt;/<span class="hljs-name">main</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">aside</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"aside"</span>&gt;</span>aside<span class="hljs-tag">&lt;/<span class="hljs-name">aside</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">nav</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"nav"</span>&gt;</span>nav<span class="hljs-tag">&lt;/<span class="hljs-name">nav</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">footer</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"footer"</span>&gt;</span>footer<span class="hljs-tag">&lt;/<span class="hljs-name">footer</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+</div></code></pre>
+<pre class="hljs"><code><div><span class="hljs-selector-class">.container</span> {
+  <span class="hljs-attribute">color</span>: white;
+  <span class="hljs-attribute">font-size</span>: <span class="hljs-number">30px</span>;
+}
+<span class="hljs-selector-class">.header</span> {
+  <span class="hljs-attribute">background-color</span>: lightgreen;
+}
+<span class="hljs-selector-class">.main</span> {
+  <span class="hljs-attribute">background-color</span>: skyblue;
+}
+<span class="hljs-selector-class">.aside</span> {
+  <span class="hljs-attribute">background-color</span>: orange;
+}
+<span class="hljs-selector-class">.nav</span> {
+  <span class="hljs-attribute">background-color</span>: tomato;
+}
+<span class="hljs-selector-class">.footer</span> {
+  <span class="hljs-attribute">background-color</span>: purple;
+}
+</div></code></pre>
+<br>
+<h3 id="%E2%97%8F-%E3%82%B0%E3%83%AA%E3%83%83%E3%83%89%E3%83%A9%E3%82%A4%E3%83%B3%E3%81%AE%E6%8C%87%E5%AE%9A">● グリッドラインの指定</h3>
+<p>3 カラムのレイアウトは、<mark>3×3 のグリッド</mark>とみなす事が<br>
+できるため、column と row を 3 つずつ指定します。</p>
+<div style="height:12px;">
+<span style="margin-left:8px; padding:6px 10px; background:lightgreen; color:black; font-weight:bold;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">演習 2</span>
+</div>
+<div style="border:2px solid lightgreen; padding:25px 12px 10px; font-size:0.85em;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">
+以下のコードを CSSエリアに記述しましょう。
+</div>
+<pre class="hljs"><code><div><span class="hljs-selector-class">.container</span> {
+  <span class="hljs-attribute">display</span>: grid;
+  <span class="hljs-comment">/*トラック(列)の幅を指定*/</span>
+  <span class="hljs-attribute">grid-template-columns</span>: <span class="hljs-number">2</span>fr <span class="hljs-number">6</span>fr <span class="hljs-number">1.5</span>fr;
+  <span class="hljs-comment">/*トラック(行)の幅を指定*/</span>
+  <span class="hljs-attribute">grid-template-rows</span>: <span class="hljs-number">40px</span> <span class="hljs-number">500px</span> <span class="hljs-number">70px</span>;
+}
+</div></code></pre>
+<h3 id="%E2%97%8F-%E3%82%B0%E3%83%AA%E3%83%83%E3%83%89%E3%82%A8%E3%83%AA%E3%82%A2%E3%81%AE%E6%8C%87%E5%AE%9A">● グリッドエリアの指定</h3>
+<p>それでは、各コンテンツの配置を指定して行きましょう。</p>
+<blockquote>
+<p>header：1 行目全てのエリア<br>
+aside：2 行目から 3 行目、1 列目のエリア<br>
+main：2 行目から 3 行目、2 列目のエリア<br>
+nav：2 行目から 3 行目、3 列目のエリア<br>
+footer：3 行目全てのエリア</p>
+</blockquote>
+<p><br><br><br></p>
+<div style="height:12px;">
+<span style="margin-left:8px; padding:6px 10px; background:lightgreen; color:black; font-weight:bold;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">演習 3</span>
+</div>
+<div style="border:2px solid lightgreen; padding:25px 12px 10px; font-size:0.85em;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">
+以下のコードを CSSエリアに記述しましょう。
+</div>
+<pre class="hljs"><code><div><span class="hljs-selector-class">.header</span> {
+  <span class="hljs-attribute">grid-row</span>: <span class="hljs-number">1</span> / <span class="hljs-number">2</span>;
+  <span class="hljs-attribute">grid-column</span>: <span class="hljs-number">1</span> / <span class="hljs-number">4</span>;
+}
+<span class="hljs-selector-class">.aside</span> {
+  <span class="hljs-attribute">grid-row</span>: <span class="hljs-number">2</span> / <span class="hljs-number">3</span>;
+  <span class="hljs-attribute">grid-column</span>: <span class="hljs-number">1</span> / <span class="hljs-number">2</span>;
+}
+<span class="hljs-selector-class">.main</span> {
+  <span class="hljs-attribute">grid-row</span>: <span class="hljs-number">2</span> / <span class="hljs-number">3</span>;
+  <span class="hljs-attribute">grid-column</span>: <span class="hljs-number">2</span> / <span class="hljs-number">3</span>;
+}
+<span class="hljs-selector-class">.nav</span> {
+  <span class="hljs-attribute">grid-row</span>: <span class="hljs-number">2</span> / <span class="hljs-number">3</span>;
+  <span class="hljs-attribute">grid-column</span>: <span class="hljs-number">3</span> / <span class="hljs-number">4</span>;
+}
+<span class="hljs-selector-class">.footer</span> {
+  <span class="hljs-attribute">grid-row</span>: <span class="hljs-number">3</span> / <span class="hljs-number">4</span>;
+  <span class="hljs-attribute">grid-column</span>: <span class="hljs-number">1</span> / <span class="hljs-number">4</span>;
+}
+</div></code></pre>
+<br>
+<p>Grid Layout を利用したページレイアウトを学習しました。<br>
+レイアウトは他にも種類があるため、以下のサイトなどを<br>
+参考にするとよいと思います。</p>
+<p><a href="https://isaikaori.com/design/20181029.html" target="_blank"> &gt; サイトの目的に合ったデザイン構成とは</a><br>
+<a href="https://blog.codecamp.jp/web_design_layout" target="_blank"> &gt; レイアウトまとめ</a>
+<br></p>
+<p><br><br><br></p>
+<h1 id="3-jquery1">3. jQuery(1)</h1>
+<h2 id="%E2%97%86jquery-%E3%81%A8%E3%81%AF">◆jQuery とは</h2>
+<p>短い記述で HTML 要素に動作を指定できる JavaScript のライブラリです。<br>
+※ライブラリ：使いやすい機能をまとめたファイル。</p>
+<br>
+<h3 id="%E2%97%8F-%E4%BD%BF%E3%81%84%E6%96%B9">● 使い方</h3>
+<p>通常は 公式サイトからファイルをダウンロードするか、<br>
+CDN(コンテンツデリバリネットワーク)を利用します。<br>
+CDN とは、外部のサーバからファイルを呼び出す方法で、<br>
+サーバの URL を HTML ファイルに指定する必要があります。</p>
+<blockquote>
+<p><a href =https://code.jquery.com/ target="_blank">jQuery CDN</a></p>
+</blockquote>
+<br>
+<h3 id="%E2%97%8Fcodepen-%E3%81%A7%E3%81%AE%E8%A8%AD%E5%AE%9A">●CodePen での設定</h3>
+<p>CodePen ではファイルのダウンロードや CDN の指定は不要ですが、<br>
+以下の手順で 設定を変更する必要があります。</p>
+<blockquote>
+<p>→<a href =https://code.jquery.com/ target="_blank">CodePen</a> <br>
+(1) JS の左側にある歯車マークをクリック<br>
+(2) 「Pen Setting」の「Add External Scripts/Pens」の検索ボックスで<br> &gt;      「jquery」を入力<br>
+(3) 「jquery」を選択後、右上の「Close」で保存 ※画像は Save&amp;Close になっています。<br></p>
+</blockquote>
+<br>
+<img src="codepen01.png">
+<br>
+<img src="codepen02.png">
+<p><br><br></p>
+<h2 id="%E2%97%86-%E5%9F%BA%E6%9C%AC%E6%A7%8B%E9%80%A0">◆ 基本構造</h2>
+<p>jQuery は、<mark>$('セレクタ').メソッド();</mark> が基本構造となります。</p>
+<blockquote>
+<p>セレクタ：対象となる HTML 要素を指定(CSS と同様)<br>
+メソッド：処理する内容を記述</p>
+</blockquote>
+<p>また、この時に指定される対象を<br>
+<mark>DOM(document object model)</mark>と言います。<br>
+JavaScript で操作できる HTML 等の構造と覚えておきましょう。</p>
+<br>
+<div style="height:12px;">
+<span style="margin-left:8px; padding:6px 10px; background:lightgreen; color:black; font-weight:bold;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">演習 1</span>
+</div>
+<div style="border:2px solid lightgreen; padding:25px 12px 10px; font-size:0.85em;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">
+次のコードを記述し、結果を確認しましょう。<br>
+※ 今回は css()メソッドを指定しています。
+</div>
+<pre class="hljs"><code><div><span class="hljs-comment">&lt;!--HTML--&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>text<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+</div></code></pre>
+<pre class="hljs"><code><div><span class="hljs-comment">//JavaScript</span>
+<span class="hljs-comment">//セレクタに p、cssメソッドのカラープロパティに redを指定</span>
+$(<span class="hljs-string">"p"</span>).css(<span class="hljs-string">"color"</span>, <span class="hljs-string">"red"</span>);
+</div></code></pre>
+<br>
+<h3 id="%E2%97%8F-%E5%B1%9E%E6%80%A7idclass%E3%81%AE%E6%8C%87%E5%AE%9A">● 属性(id,class)の指定</h3>
+<p>CSS と同じく、id = #, class = . で指定する事ができます。<br>
+また <mark>{ }</mark>で囲み、<mark>プロパティ:値</mark>を<mark>,</mark> で区切ると、<br>
+複数のプロパティを指定可能です。</p>
+<pre class="hljs"><code><div><span class="hljs-comment">//JavaScript</span>
+$(<span class="hljs-string">"属性"</span>).css({ プロパティ: <span class="hljs-string">"値"</span>, プロパティ: <span class="hljs-string">"値"</span> });
+</div></code></pre>
+<br>
+<h3 id="%E2%97%8F-%E3%83%A1%E3%82%BD%E3%83%83%E3%83%89%E3%83%81%E3%82%A7%E3%83%BC%E3%83%B3">● メソッドチェーン</h3>
+<p><mark>.</mark> を間に挟んでメソッドの記述を続ける事と、<br>
+複数のメソッドを指定する事ができます。<br>
+この記述方法を<mark>メソッドチェーン</mark>と言います。</p>
+<br>
+<pre class="hljs"><code><div><span class="hljs-comment">//JavaScript</span>
+$(<span class="hljs-string">"属性"</span>).メソッドA().メソッドB();
+</div></code></pre>
+<div style="height:12px;">
+<span style="margin-left:8px; padding:6px 10px; background:lightgreen; color:black; font-weight:bold;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">演習 2</span>
+</div>
+<div style="border:2px solid lightgreen; padding:25px 12px 10px; font-size:0.85em;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">
+次のコードを記述し、結果を確認しましょう。<br>
+※ Emmetは、p#sample01{text01} と p.sample02{text02} と p.sample03{text03} です。<br>
+※ fadeOutメソッド：対象を非常時にするメソッドで、() 内の単位はミリ秒です。
+</div>
+<pre class="hljs"><code><div><span class="hljs-comment">&lt;!--HTML--&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"sample01"</span>&gt;</span>text01<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"sample02"</span>&gt;</span>text02<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"sample03"</span>&gt;</span>text03<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+</div></code></pre>
+<pre class="hljs"><code><div><span class="hljs-comment">//JavaScript</span>
+$(<span class="hljs-string">"#sample01"</span>).css(<span class="hljs-string">"color"</span>, <span class="hljs-string">"tomato"</span>);
+$(<span class="hljs-string">".sample02"</span>).css({ <span class="hljs-attr">color</span>: <span class="hljs-string">"orange"</span>, <span class="hljs-string">"font-size"</span>: <span class="hljs-string">"50px"</span> });
+<span class="hljs-comment">//青文字になり、5秒後に消える</span>
+$(<span class="hljs-string">".sample03"</span>).css(<span class="hljs-string">"color"</span>, <span class="hljs-string">"blue"</span>).fadeOut(<span class="hljs-number">5000</span>);
+</div></code></pre>
+<br>
+<h3 id="%E2%97%8Fcss-%E3%82%AF%E3%83%A9%E3%82%B9%E3%81%AE%E6%8C%87%E5%AE%9A">●CSS クラスの指定</h3>
+<p>jQuery で CSS を指定する場合、上記ではプロパティを<br>
+1 つずつ記述していました。この方法以外に、複数の<br>
+プロパティを指定できる addClass メソッドがあります。</p>
+<pre class="hljs"><code><div><span class="hljs-comment">/*CSS*/</span>
+.クラス {
+    プロパティ：値;
+    プロパティ：値;
+    プロパティ：値;
+}
+</div></code></pre>
+<pre class="hljs"><code><div>$(<span class="hljs-string">"セレクタ"</span>).addClass(<span class="hljs-string">"クラス"</span>);
+</div></code></pre>
+<p>まず CSS でクラスと各プロパティを記述し、次に jQuery で<br>
+クラスを対象のセレクタを指定します。その結果、<br>
+クラス内のプロパティが 指定された HTML 要素に反映されます。</p>
+<p>また、removeClass メソッドを使うと、指定された CSS クラスを削除できます。
+<br></p>
+<br>
+<div style="height:12px;">
+<span style="margin-left:8px; padding:6px 10px; background:lightgreen; color:black; font-weight:bold;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">演習 3</span>
+</div>
+<div style="border:2px solid lightgreen; padding:25px 12px 10px; font-size:0.85em;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">
+次のコードを記述して、結果を確認しましょう。<br>
+(addClassの結果を見てから、removeClassの // を削除する)<br>
+※ Emmetは、 fz30, bd3-solid-pink, m20, p20, tac 
+</div>
+<p>[HTML]</p>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"sample04"</span>&gt;</span>text04<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+</div></code></pre>
+<p>[CSS]</p>
+<pre class="hljs"><code><div><span class="hljs-selector-class">.testStyle</span> {
+  <span class="hljs-attribute">font-size</span>: <span class="hljs-number">30px</span>;
+  <span class="hljs-attribute">border</span>: <span class="hljs-number">3px</span> solid pink;
+  <span class="hljs-attribute">margin</span>: <span class="hljs-number">20px</span>;
+  <span class="hljs-attribute">padding</span>: <span class="hljs-number">20px</span>;
+  <span class="hljs-attribute">text-align</span>: center;
+}
+</div></code></pre>
+<p>[JavaScript]</p>
+<pre class="hljs"><code><div>$(<span class="hljs-string">".sample04"</span>).addClass(<span class="hljs-string">"testStyle"</span>);
+<span class="hljs-comment">//$('.sample04').removeClass('testStyle');</span>
+</div></code></pre>
+<br>
+<h3 id="%E2%97%8F-%E3%82%B3%E3%83%B3%E3%83%86%E3%83%B3%E3%83%84%E3%81%AE%E6%93%8D%E4%BD%9C">● コンテンツの操作</h3>
+<p>以下のメソッドでコンテンツやタグを操作可能です。</p>
+<blockquote>
+<p>・text：コンテンツを書き換え<br>
+・html：タグの書き換え<br>
+・remove:コンテンツを削除<br></p>
+</blockquote>
+<br>
+<div style="height:12px;">
+<span style="margin-left:8px; padding:6px 10px; background:lightgreen; color:black; font-weight:bold;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">演習 4</span>
+</div>
+<div style="border:2px solid lightgreen; padding:25px 12px 10px; font-size:0.85em;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">
+次のコードを記述し、結果を確認しましょう。<br>
+</div>
+<p><br><br></p>
+<p>[HTML]</p>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"text"</span>&gt;</span>書き換え前<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"click"</span>&gt;</span>変化前<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"remove"</span>&gt;</span>消えます<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+</div></code></pre>
+<p>[JavaScript]</p>
+<pre class="hljs"><code><div><span class="hljs-comment">//テキストを書き換える</span>
+$(<span class="hljs-string">".text"</span>).text(<span class="hljs-string">"書き換え後!"</span>).css(<span class="hljs-string">"color"</span>, <span class="hljs-string">"green"</span>);
+<span class="hljs-comment">//pタグから aタグに書き換える</span>
+$(<span class="hljs-string">".click"</span>).html(<span class="hljs-string">'&lt;a href=""&gt;クリック&lt;/a&gt;'</span>);
+<span class="hljs-comment">//属性を指定して削除する</span>
+$(<span class="hljs-string">".remove"</span>).remove();
+</div></code></pre>
+<br>
+<h3 id="%E2%97%8F-%E8%A6%81%E7%B4%A0%E3%81%AE%E8%BF%BD%E5%8A%A0">● 要素の追加</h3>
+<p>上記では タグやタグの中身を操作しましたが、<br>
+HTML 要素を追加する事も可能です。</p>
+<blockquote>
+<p>before：要素の前に追加 <br>
+after：要素の後に追加 <br>
+prepend：子要素の先頭に追加<br>
+append ：子要素の末尾に追加<br></p>
+</blockquote>
+<p>次の演習でメソッドの効果を確認しましょう。</p>
+<br>
+<div style="height:12px;">
+<span style="margin-left:8px; padding:6px 10px; background:lightgreen; color:black; font-weight:bold;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">演習 5</span>
+</div>
+<div style="border:2px solid lightgreen; padding:25px 12px 10px; font-size:0.85em;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">
+次のコードを記述し、結果を確認しましょう。<br>
+※ Emmetは、ul>li.li${$}*5です。
+</div>
+<p>[HTML]</p>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">ul</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"li1"</span>&gt;</span>1<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"li2"</span>&gt;</span>2<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"li3"</span>&gt;</span>3<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"li4"</span>&gt;</span>4<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"li5"</span>&gt;</span>5<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span>
+</div></code></pre>
+<br>
+<p>[CSS]</p>
+<pre class="hljs"><code><div><span class="hljs-selector-tag">ul</span> {
+  <span class="hljs-attribute">color</span>: blue;
+}
+<span class="hljs-selector-tag">li</span> {
+  <span class="hljs-attribute">color</span>: orange;
+  <span class="hljs-attribute">font-size</span>: <span class="hljs-number">20px</span>;
+  <span class="hljs-attribute">margin</span>: <span class="hljs-number">10px</span>;
+}
+</div></code></pre>
+<p>[JavaScript]</p>
+<pre class="hljs"><code><div>$(<span class="hljs-string">".li1"</span>).before(<span class="hljs-string">"「before」"</span>);
+$(<span class="hljs-string">".li2"</span>).after(<span class="hljs-string">"「after」"</span>);
+$(<span class="hljs-string">".li3"</span>).prepend(<span class="hljs-string">"「prepend」"</span>);
+$(<span class="hljs-string">".li4"</span>).append(<span class="hljs-string">"「append」"</span>);
+</div></code></pre>
+<p><br><br><br></p>
+<h1 id="4-jquery2">4. jQuery(2)</h1>
+<h2 id="%E2%97%86-%E3%82%A2%E3%83%8B%E3%83%A1%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3">◆ アニメーション</h2>
+<h3 id="%E2%97%8F-%E3%82%A8%E3%83%95%E3%82%A7%E3%82%AF%E3%83%88">● エフェクト</h3>
+<p>要素に対し、表示/非表示を指定する事ができます。<br>
+主なメソッドは以下の通りです。</p>
+<blockquote>
+<p>・hide：対象を非表示にする<br>
+・show：対象を表示する<br>
+・fadeOut：対象をフェードアウトさせる<br>
+・fadeIn：対象をフェードインさせる<br>
+・toggle：表示中なら消え、非表示なら現れる<br></p>
+</blockquote>
+<br>
+<div style="height:12px;">
+<span style="margin-left:8px; padding:6px 10px; background:lightgreen; color:black; font-weight:bold;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">演習 1</span>
+</div>
+<div style="border:2px solid lightgreen; padding:25px 12px 10px; font-size:0.85em;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">
+次のコードを記述し、結果を確認しましょう。<br>
+※ Emmetは、html -> .box$*3、 css -> w100, h100, bgc-red etc... です。
+</div>
+<p>[HTML]</p>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"box1"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"box2"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"box3"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+</div></code></pre>
+<p>[CSS]</p>
+<pre class="hljs"><code><div><span class="hljs-selector-class">.box1</span> {
+  <span class="hljs-attribute">width</span>: <span class="hljs-number">100px</span>;
+  <span class="hljs-attribute">height</span>: <span class="hljs-number">100px</span>;
+  <span class="hljs-attribute">background-color</span>: red;
+}
+<span class="hljs-selector-class">.box2</span> {
+  <span class="hljs-attribute">width</span>: <span class="hljs-number">100px</span>;
+  <span class="hljs-attribute">height</span>: <span class="hljs-number">100px</span>;
+  <span class="hljs-attribute">background-color</span>: blue;
+}
+<span class="hljs-selector-class">.box3</span> {
+  <span class="hljs-attribute">width</span>: <span class="hljs-number">100px</span>;
+  <span class="hljs-attribute">height</span>: <span class="hljs-number">100px</span>;
+  <span class="hljs-attribute">background-color</span>: yellow;
+}
+</div></code></pre>
+<br>
+<p>[JavaScript]</p>
+<pre class="hljs"><code><div>$(<span class="hljs-string">'.box1'</span>).hide(<span class="hljs-string">'slow'</span>);
+$(<span class="hljs-string">'.box1'</span>).show(<span class="hljs-string">'slow'</span>);
+
+$(<span class="hljs-string">'.box2'</span>).fadeOut(<span class="hljs-string">'slow'</span>);
+$(<span class="hljs-string">'.box2'</span>).fadeIn(<span class="hljs-string">'slow'</span>);
+
+$(<span class="hljs-string">'.box3'</span>).toggle(<span class="hljs-string">'slow'</span>);
+$(<span class="hljs-string">'.box3'</span>).toggle(<span class="hljs-string">'slow'</span>);
+</div></code></pre>
+<br>
+<h3 id="%E2%97%8F-%E3%82%A4%E3%83%99%E3%83%B3%E3%83%88">● イベント</h3>
+<p>クリックなどをトリガーにするメソッドについて<br>
+学習しましょう。</p>
+<blockquote>
+<p>・mouseover：マウスカーソルが通過する時に実行される<br>
+・mouseout：マウスカーソルが外れた時に実行される<br>
+・click：クリックした際に実行される<br></p>
+</blockquote>
+<p>またこれらのメソッドは、関数を渡す事ができます<br>
+代表的な関数に、<mark>callback 関数</mark>があります。</p>
+<p>メソッドの()内に <mark>function()</mark>を指定し、<br>
+その後ろに実行したい jquery メソッドを記述します。</p>
+<p>この時、$()の中に <mark>this</mark>を指定する事で、<br>
+HTML 要素に対して目的の実行処理を実行できます。</p>
+<pre class="hljs"><code><div>$(<span class="hljs-string">'セレクタ'</span>).メソッド(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+      $(<span class="hljs-keyword">this</span>).メソッド();
+});
+</div></code></pre>
+<p>構造が複雑なため、次の演習で感覚を掴みましょう。</p>
+<br>
+<div style="height:12px;">
+<span style="margin-left:8px; padding:6px 10px; background:lightgreen; color:black; font-weight:bold;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">演習 2</span>
+</div>
+<div style="border:2px solid lightgreen; padding:25px 12px 10px; font-size:0.85em;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">
+次のコードを記述し、結果を確認しましょう。<br>
+</div>
+<p>[HTML]</p>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"box1"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+</div></code></pre>
+<p>[CSS]</p>
+<pre class="hljs"><code><div><span class="hljs-selector-class">.box1</span> {
+  <span class="hljs-attribute">width</span>: <span class="hljs-number">100px</span>;
+  <span class="hljs-attribute">height</span>: <span class="hljs-number">100px</span>;
+  <span class="hljs-attribute">background-color</span>: red;
+}
+</div></code></pre>
+<p>[JavaScript]</p>
+<pre class="hljs"><code><div><span class="hljs-comment">//マウスを通過させると色が青と緑に交互に変化</span>
+<span class="hljs-comment">//mouseoverと mouseoutをメソッドチェーンで結合</span>
+$(<span class="hljs-string">'.box1'</span>).mouseover(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+      $(<span class="hljs-keyword">this</span>).css(<span class="hljs-string">'background'</span>, <span class="hljs-string">'blue'</span>);
+}).mouseout(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+    $(<span class="hljs-keyword">this</span>).css(<span class="hljs-string">'background'</span>, <span class="hljs-string">'green'</span>);
+});
+
+<span class="hljs-comment">//クリックすると、clickのメッセージが表示される</span>
+$(<span class="hljs-string">'.box1'</span>).click(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+    alert(<span class="hljs-string">"click!"</span>);
+});
+</div></code></pre>
+<p><br><br><br></p>
+<h2 id="%E2%97%86-%E7%B7%8F%E5%90%88%E6%BC%94%E7%BF%92">◆ 総合演習</h2>
+<br>
+<div style="height:12px;">
+<span style="margin-left:8px; padding:6px 10px; background:pink; color:black; font-weight:bold;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">総合演習 1</span>
+</div>
+<div style="border:4px solid pink; padding:25px 12px 10px; font-size:0.85em;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">
+次の Webサイトにアクセスし、Grid layoutの問題 Lv.1～Lv.10 を解きましょう。<br>
+※ テキスト範囲外のマイナス値指定と、span指定が出題されます。<br>
+<a href="http://cssgridgarden.com/" target="_blank">GRID GARDEN</a><br>
+</div>
+<br>
+<div style="height:12px;">
+<span style="margin-left:8px; padding:6px 10px; background:pink; color:black; font-weight:bold;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">総合演習 2</span>
+</div>
+<div style="border:4px solid pink; padding:25px 12px 10px; font-size:0.85em;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">
+jQueryを用いて、[テキストの表示を変化させる]ボタンを作成しましょう。<br>
+手順は以下を参考にして下さい。<br>
+<br>
+(1) pタグで「テキスト」を表示させる<br>
+(2) inputタグ でボタンを作成<br>
+(3) 任意のフォントサイズ、背景色、枠線を指定した CSSを作成<br>
+(4) addClass で (3)のCSSを指定する。<br>
+(5) click プロパティを使用し、(4)のaddClassをクリック動作と連携させる。<br>
+(6) ボタンをクリックして、CSSのロパティを反映させる。<br>
+</div>
+<br>
+<p>ヒント 1<br><br>
+・p タグは class 属性を指定する<br>
+・input タグは type、class、value の 3 属性を指定する<br>
+・type はフォームの種類(button)、class は任意の値、value は &quot;ボタン&quot; を記述<br>
+・<a href="http://www.htmq.com/html5/input_type_button.shtml" target="_blank">input button 参照</a>
+※ name 属性は今回は不要</p>
+<p>ヒント 2<br><br>
+・input タグの class 属性に対して click メソッドを連携させる<br>
+・click メソッド の実行処理(function()以下)で、addClass を指定する<br>
+・addClass はテキストの属性に対し、CSS のセレクタを反映させる<br></p>
+<p>ヒント 3<br><br>
+HTML 部分は以下の様に記述する。<br></p>
+<blockquote>
+<p>&lt;p class=&quot;text&quot;&gt;text&lt;/p&gt; <br> &gt;&lt;input type=&quot;button&quot; class=&quot;click&quot; value=&quot;ボタン&quot;&gt; <br></p>
+</blockquote>
+<p>jQuery 部分の基本構造は以下の様に記述する。<br></p>
+<blockquote>
+<p>$('input タグの class 属性').click(function() { <br> &gt;$('変更させたいコンテンツの class 属性').addClass('css のクラス名'); <br>
+});</p>
+</blockquote>
+<!--&lt;&gt;<br>-->
+<br>
+<h2 id="%E2%97%86-%E6%BC%94%E7%BF%92-1-%E3%81%AE%E5%9B%9E%E7%AD%94">◆ 演習 1 の回答</h2>
+<blockquote>
+<p>Lv.1：grid-column-start: 3;<br>
+Lv.2：grid-column-start: 5;<br>
+Lv.3：grid-column-end: 4;<br>
+Lv.4：grid-column-end: 2;<br>
+Lv.5：grid-column-end: -2;<br>
+Lv.6：grid-column-start:-3;<br>
+Lv.7：grid-column-end: span 2;<br>
+Lv.8：grid-column-end: span 5;<br>
+Lv.9：grid-column-start: span 3;<br>
+Lv.10：grid-column: 4 / 6;<br></p>
+</blockquote>
+<br>
+<h2 id="%E2%97%86-%E6%BC%94%E7%BF%92-2-%E3%81%AE%E5%9B%9E%E7%AD%94%E4%BE%8B">◆ 演習 2 の回答例</h2>
+<p>[HTML]</p>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"text"</span>&gt;</span>text<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"button"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"click"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"ボタン"</span> /&gt;</span>
+</div></code></pre>
+<p>[css]</p>
+<pre class="hljs"><code><div><span class="hljs-selector-class">.changed</span> {
+  <span class="hljs-attribute">font-size</span>: <span class="hljs-number">50px</span>;
+  <span class="hljs-attribute">background-color</span>: lightblue;
+  <span class="hljs-attribute">border</span>: <span class="hljs-number">3px</span> solid crimson;
+}
+</div></code></pre>
+<p>[JavaScrip]</p>
+<pre class="hljs"><code><div>$(<span class="hljs-string">'.click'</span>).click(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+  $(<span class="hljs-string">'.text'</span>).addClass(<span class="hljs-string">'changed'</span>);
+});
+</div></code></pre>
+<p>今回はここまでです。お疲れ様でした！</p>
+<p><a href="https://masashi-m.github.io/text_htmlcss_0/.">HTML/CSS 学習テキスト(5)へ</a></p>
+
+</body>
+</html>
